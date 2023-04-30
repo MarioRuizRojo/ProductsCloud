@@ -1,0 +1,15 @@
+admin:
+  masterkey: empty1
+
+config:
+  urlProducts: products
+  urlCategories: categories
+
+spring:
+  application.name: products
+  cloud:
+    config:
+      enabled: false
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.mongo.MongoReactiveAutoConfiguration,org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration
+    

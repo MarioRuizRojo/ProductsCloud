@@ -1,0 +1,67 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.0.6'
+	id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'com.springboot.webflux'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	set('springCloudVersion', "2022.0.2")
+}
+
+dependencies {
+	//------------------------------------------------spring----------------------------------------------
+	//actuator
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	//security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	//reactive web
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	//cloud config
+	implementation 'org.springframework.cloud:spring-cloud-starter-config'
+	//validation
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	//---------------------------------------------------------------------------------------------------
+
+	//lombok
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	//mapstruct
+	implementation 'org.mapstruct:mapstruct:1.5.3.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
+
+	//test
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'io.projectreactor:reactor-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+}
+
+
+bootRun {
+	systemProperties = System.properties
+	systemProperties.remove("java.endorsed.dirs")
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

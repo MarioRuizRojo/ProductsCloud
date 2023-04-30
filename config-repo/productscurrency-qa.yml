@@ -1,0 +1,6 @@
+admin:
+  masterkey: '{cipher}5f1d13b8e7f900c3fa7474c1aa53b5971f563c84151bd74fbab7865716fdd119'
+
+external:
+  products:
+    url: <web app products url>

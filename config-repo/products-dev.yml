@@ -1,0 +1,12 @@
+admin:
+  masterkey: empty1
+
+spring:
+  data:
+    mongodb:
+      products:
+        database: products
+        password: '{cipher}37ccc5ff41c741187e145a4d023bf631eddc86aeadc092476bc18248211d5cbeeafa57a9bd303f4816ee261850c39bc8'
+      employees:
+        database: employees
+        password: '{cipher}37ccc5ff41c741187e145a4d023bf631eddc86aeadc092476bc18248211d5cbeeafa57a9bd303f4816ee261850c39bc8'

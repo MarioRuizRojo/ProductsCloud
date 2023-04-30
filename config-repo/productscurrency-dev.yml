@@ -1,0 +1,6 @@
+admin:
+  masterkey: empty1
+
+external:
+  products:
+    url: <web app products url>

@@ -1,0 +1,45 @@
+admin:
+  masterkey: empty1
+
+management:
+  endpoints.web.base-path: /actuator
+  server.port: 8081
+  health:
+    mail:
+      enabled: false
+  endpoint:
+    health:
+      show-details: when-authorized
+  endpoints:
+    web:
+      exposure:
+        include: health, info, refresh, shutdown, env
+
+config:
+  urlProducts: products
+  urlCategories: categories
+
+exchange:
+  update:
+    frequency: 300 
+    #seconds = 5 min
+
+external:
+  coingecko:
+    url: 'https://api.coingecko.com/api/v3/exchange_rates'
+  products:
+    url: 'http://localhost:8080/products/'
+  categories:
+    url: 'categories/'
+
+server:
+  port : 8081
+
+spring:
+  application:
+    name: productscurrency
+  config:
+    import: optional:configserver:${CLOUD_CONFIG_CONN_STR}
+  cloud:
+    config:
+      label: main

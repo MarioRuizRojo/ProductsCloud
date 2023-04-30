@@ -1,0 +1,6 @@
+admin:
+  masterkey: test
+
+external:
+  products:
+    url: <web app products url>

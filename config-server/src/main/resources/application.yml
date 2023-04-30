@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          clone-on-start: true
+          uri:  <config-repo url>
+          username: <devops user>
+          password: ${PERSONAL_ACCESS_TOKEN}
+  security:
+    user:
+      name: root
+      password: ${CLOUD_CONFIG_PASSWORD}
+
+server:
+  port : 80

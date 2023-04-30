@@ -1,0 +1,48 @@
+admin:
+  masterkey: empty1
+
+management:
+  endpoints.web.base-path: /actuator
+  server.port: 80
+  health:
+    mail:
+      enabled: false
+  endpoint:
+    health:
+      show-details: when-authorized
+  endpoints:
+    web:
+      exposure:
+        include: health, info, refresh, shutdown, env
+
+config:
+  urlProducts: products
+  urlCategories: categories
+
+spring:
+  application:
+    name: products
+  config:
+    import: optional:configserver:${CLOUD_CONFIG_CONN_STR}
+  cloud:
+    config:
+      label: main
+  data:
+    mongodb:
+      products:
+        host: localhost
+        port: 27017
+        database: products
+        username: empty2
+        password: empty3
+      employees:
+        host: localhost
+        port: 27017
+        database: employees
+        username: empty2
+        password: empty3
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.mongo.MongoReactiveAutoConfiguration,org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration
+
+server:
+  port : 80

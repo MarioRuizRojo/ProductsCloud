@@ -1,0 +1,18 @@
+admin:
+  masterkey: empty1
+
+spring:
+  data:
+    mongodb:
+      products:
+        host: localhost
+        port: 27017
+        database: products
+        username: empty2
+        password: empty3
+      employees:
+        host: localhost
+        port: 27017
+        database: employees
+        username: empty2
+        password: empty3

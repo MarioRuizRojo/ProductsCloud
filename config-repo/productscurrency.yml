@@ -1,0 +1,36 @@
+admin:
+  masterkey: empty1
+
+management:
+  endpoints.web.base-path: /actuator
+  server.port: 80
+  health:
+    mail:
+      enabled: false
+  endpoint:
+    health:
+      show-details: when-authorized
+  endpoints:
+    web:
+      exposure:
+        include: health, info, refresh, shutdown, env
+
+config:
+  urlProducts: products
+  urlCategories: categories
+
+exchange:
+  update:
+    frequency: 300 
+    #seconds = 5 min
+
+external:
+  coingecko:
+    url: https://api.coingecko.com/api/v3/exchange_rates
+  products:
+    url: http://localhost/products/
+  categories:
+    url: categories/
+
+server:
+  port : 80

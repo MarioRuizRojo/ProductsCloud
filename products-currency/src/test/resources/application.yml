@@ -1,0 +1,25 @@
+admin:
+  masterkey: empty1
+
+config:
+  urlProducts: products
+  urlCategories: categories
+
+exchange:
+  update:
+    frequency: 300 
+    #seconds = 5 min
+
+external:
+  coingecko:
+    url: empty2
+  products:
+    url: empty3
+  categories:
+    url: empty4
+
+spring:
+  application.name: productscurrency
+  cloud:
+    config:
+      enabled: false
