@@ -12,6 +12,7 @@ import reactor.core.publisher.Mono;
  * Products CRUD API Controller with currency exchange calculation for prices
  */
 @RestController
+@CrossOrigin(origins = "${frontendurl}")
 @RequestMapping("/${config.urlProducts}")
 public class ProductController {
 
