@@ -129,6 +129,7 @@ public class ProductService {
         return validateProductReceived(productReceived)
                 .map(productCreated -> {
                     productCreated.setCreatedAt(LocalDateTime.now());
+                    productCreated.setId((new ObjectId()).toString());
                     return productCreated;
                 })
                 .map(ProductDAOMapper.INSTANCE::BOtoDAO)

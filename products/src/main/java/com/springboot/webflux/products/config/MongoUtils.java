@@ -26,14 +26,7 @@ public class MongoUtils {
         /**
          * Connection parameters object
          */        
-        MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
-                .readConcern(ReadConcern.DEFAULT)
-                .writeConcern(WriteConcern.MAJORITY)
-                .readPreference(ReadPreference.primary())
-                .applyConnectionString(
-                    new ConnectionString(uri)
-                    )
-                .build();
+        MongoClientSettings mongoClientSettings;
 
         //if localhost then it uses no password
         if(mongoProperties.getHost().equals("localhost")){
@@ -43,6 +36,16 @@ public class MongoUtils {
                 .readPreference(ReadPreference.primary())
                 .applyConnectionString(
                     new ConnectionString("mongodb://localhost/"+mongoProperties.getDatabase()+":27017")
+                    )
+                .build();
+        }
+        else{
+            mongoClientSettings = MongoClientSettings.builder()
+                .readConcern(ReadConcern.DEFAULT)
+                .writeConcern(WriteConcern.MAJORITY)
+                .readPreference(ReadPreference.primary())
+                .applyConnectionString(
+                    new ConnectionString(uri)
                     )
                 .build();
         }
