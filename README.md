@@ -4,12 +4,14 @@ Microservices system that serves a website for managing products with prices in 
 of products with prices in euros.  
 It is written in React with RxJS(frontend) and Spring Boot WebFlux Java(backend).  
 All microservices use reactive programming, this offers flexibility in big data load scenarios.  
-The frontend application is in a work-in-progress state.  
+
+## The frontend app (as microservice)
+It is a React App to manage products, it fetches all the product data in dollars from the first backend microservice.
 
 ## The first microservice (products-currency)
 It is a CRUD REST Java API that serves product data converted to dollars to the website and uses the second microservice to request that product data in euros from a MongoDB.  
 
-## The seconde microservice (products)
+## The second microservice (products)
 It is a CRUD REST Java API that serves all the product data in euros to the first microservice and gets all that data from a MongoDB database.  
 
 ## Deployment
@@ -42,13 +44,20 @@ java -jar  products-0.0.1-SNAPSHOT.jar  --spring.profiles.active=test
 java -jar  products-0.0.1-SNAPSHOT.jar  --spring.profiles.active=test
 ```
 
+9. Run the products-page frontend app  
+Inside products-page folder  
+```Shell
+npm install
+npm start
+```
+
 ## Azure Deployment
 1. Create a repository called config-repo in Azure Devops, save your PAT with full access and your user name.  
 
 2. Create a _Keyvault_ and save these secrets with your personal values in them: cloud-config-conn1, cloud-config-pass1, encrypt-key1 and personal-access-token1. Also update spring.cloud.config.server.git.username with your user name.  
 
-3. Create a _MongoDB_, one _ACR_ and three _Web App for Containers_ to host config-server, products and products-currency inside them.  
+3. Create a _MongoDB_, one _ACR_ and four _Web App for Containers_ to host config-server, products, products-currency and products-page inside them.  
 
-4. Run the MongoDB scripts (initDBEmployees.js and initDBProducts.js) in your local mongodb. They are inside products folder.  
+4. Run the MongoDB scripts (initDBEmployees.js and initDBProducts.js) in your mongodb server or cloud account. They are inside products folder.  
 
 5. Upload all the repos in Azure Devops and run the Web Apps.

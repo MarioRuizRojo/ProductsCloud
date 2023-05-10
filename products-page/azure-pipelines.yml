@@ -1,0 +1,56 @@
+trigger:
+- master
+
+variables:
+  servConResGroup: 'marios_resource_group1_conn'
+  servConAcr: 'marios_acr1_conn'
+  buildConfiguration: 'Release'
+  location: 'North Europe'
+  acrHostName: <acr url>
+  imageName: 'productspageim'
+  imageTag: $(Build.BuildId)
+
+pool: Default
+  #vmImage: ubuntu-latest
+
+stages:
+    # build the Web App and deploy it inside the container
+    - stage: 'Build_Deploy_stage53'
+      condition: or( eq(variables['Build.Reason'], 'PullRequest'), eq(variables['Build.Reason'], 'Manual') )
+      jobs:
+          - job: 'Build_Deploy_job54'
+            steps:
+                # login in ACR
+                - task: Docker@2
+                  displayName: Login to Azure Container Registry aka ACR - tag56
+                  inputs:
+                    command: login
+                    containerRegistry: '$(servConAcr)'
+                # build docker image and push it to ACR
+                # build docker image
+                - task: Docker@2
+                  displayName: Build docker image - tag571
+                  inputs:
+                    command: build
+                    containerRegistry: '$(servConAcr)'
+                    repository: '$(imageName)'
+                    arguments: '--build-arg API_URL=<products-currency url> --cache-from $(acrHostName)/$(imageName):latest'
+                    tags: |
+                      $(imageTag)
+                # push it to ACR
+                - task: Docker@2
+                  displayName: Push docker image to container - tag572
+                  inputs:
+                    command: push
+                    containerRegistry: '$(servConAcr)'
+                    repository: '$(imageName)'
+                    tags: |
+                      $(imageTag)
+                # deploy image on Azure Web App
+                - task: AzureWebAppContainer@1
+                  displayName: 'Azure Web App on Container Deploy -tag58'
+                  inputs:
+                    azureSubscription: "$(servConResGroup)"
+                    appName: <web app name>
+                    imageName: $(acrHostName)/$(imageName):$(imageTag)
+                    appSettings: '-WEBSITES_PORT 80 -WEBSITES_PORTS 80'
