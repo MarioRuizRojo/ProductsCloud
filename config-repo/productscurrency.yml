@@ -30,7 +30,9 @@ external:
   products:
     url: http://localhost/products/
   categories:
-    url: categories/
+    url: categories
+
+frontendurl: http://localhost:3000
 
 server:
   port : 80

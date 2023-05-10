@@ -3,4 +3,6 @@ admin:
 
 external:
   products:
-    url:  <web app products url>
+    url: <web app products url>
+
+frontendurl: <web app products-page url>

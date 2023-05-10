@@ -3,4 +3,6 @@ admin:
 
 external:
   products:
-    url: <web app products url>
+    url: 'http://localhost/products/'
+
+frontendurl: http://localhost:3000
